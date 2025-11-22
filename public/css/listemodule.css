@@ -1,0 +1,480 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(234, 240, 240);
+  
+  
+}
+.haut{
+    display: flex;
+    gap: 50px;
+    padding: 50px;
+    background-color: rgb(234, 240, 240);
+}
+.gauche{
+    
+    background-color: rgb(116, 64, 198);
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.droite{
+    
+    padding: 50px;
+    flex: 3;
+    background-color: rgb(234, 240, 240);
+   
+}
+.line1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    margin: 30px 0 0 0;
+    font-weight: 700;
+    color: white;
+    gap: 8px;
+}
+
+
+
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #FFF;
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.search-bar {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.body{
+    
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #FFF;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 20px;
+    border-radius: 8px;
+}
+.my_table{
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+h2{
+    padding: 10px 0;
+}
+table{
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+thead{
+    background-color: rgb(116, 64, 198);
+}
+thead tr{
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.button {
+    background-color: rgb(213, 195, 241);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buttoon{
+    background-color: rgb(213, 195, 241);
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 930px;
+    text-decoration: none;
+
+
+
+}
+.a1{
+    text-decoration: none;
+    background-color: rgb(49, 89, 247);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.a2{
+    text-decoration: none;
+    background-color: rgb(234, 247, 49);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.a3{
+    text-decoration: none;
+    background-color: rgb(247, 49, 49);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.a9{
+    text-decoration: none;
+    background-color: rgb(49, 247, 95);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.a13{
+    text-decoration: none;
+    background-color:  rgb(116, 64, 198);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+
+
+
+
+option{
+    border: none;
+    color: rgb(213, 195, 241);
+}
+select{
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+.aliiii{
+    display: flex;
+    gap: 10px;
+}
+.aliiii button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border: none;
+    background-color:  rgb(116, 64, 198);
+    color: white;
+    cursor: pointer;
+}
+
+
+.for{
+    display: flex;
+}
+
+
+/* Forcer les styles du texte d’erreur Symfony */
+.error-message {
+  background-color: #fdecea;
+  border: 1px solid #f5c2c7;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  width: fit-content;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.error-message ul {
+  list-style: none;           /* supprime la puce */
+  margin: 0;
+  padding: 0;
+}
+
+.error-message li {
+  color: #e74c3c !important;  /* force le rouge */
+  font-weight: 600;
+  font-size: 15px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
+/* Bouton “Rechercher” robuste (input submit) */
+input.btn-rech {
+    background-color: rgb(116, 64, 198);   /* mauve */
+    color: #fff;
+    border: 2px solid rgb(116, 64, 198);
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.2;
+    transition: all .25s ease;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 50px;
+  }
+  
+  input.btn-rech:hover {
+    background-color: #fff;
+    color: rgb(116, 64, 198);
+    border-color: rgb(116, 64, 198);
+    box-shadow: 0 0 8px rgba(116, 64, 198, .4);
+    transform: translateY(-1px);
+  }
+  
+  input.btn-rech:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  
+  input.btn-rech:focus-visible {
+    outline: 3px solid rgba(116, 64, 198, .35);
+    outline-offset: 2px;
+  }
+
+
+  .statut-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    min-width: 80px;
+  }
+  
+  .statut-badge.actif {
+    background-color: #28a745; /* vert */
+  }
+  
+  .statut-badge.archive {
+    background-color: #dc3545; /* rouge */
+  }
+
+/* ---------- FORMULAIRE DE FILTRE GRAND ET ESPACÉ ---------- */
+.filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+  }
+  
+  .filter-input,
+  .filter-select {
+    height: 50px;
+    flex: 1;
+    border: 1.5px solid rgba(116,64,198,0.25);
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+    background: #fafafa;
+  }
+  
+  .filter-input:focus,
+  .filter-select:focus {
+    border-color: rgb(116,64,198);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(116,64,198,0.15);
+  }
+  
+  /* bouton filtrer */
+  .filter-btn {
+    background: rgb(116,64,198);
+    color: white;
+    border: none;
+    height: 50px;
+    padding: 0 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 10px rgba(116,64,198,0.25);
+    transition: 0.3s ease;
+  }
+  .filter-btn:hover {
+    background: rgb(100,50,180);
+    transform: translateY(-2px);
+  }
+  
+  /* bouton réinitialiser */
+  .filter-reset {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    border-radius: 8px;
+    background: #f8f8f8;
+    color: #444;
+    border: 1.5px solid #ddd;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+  .filter-reset:hover {
+    background: #fff;
+    border-color: rgb(116,64,198);
+    color: rgb(116,64,198);
+  }
+
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 25px 0;
+  }
+  
+  .pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: #eee;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .pagination a:hover {
+    background-color: #6f42c1; /* violet doux */
+    color: #fff;
+  }
+  
+  .pagination a.active {
+    background-color: #6f42c1; /* ton violet principal */
+    color: #fff;
+    pointer-events: none;
+  }
+  
+  .pagination a.prev,
+  .pagination a.next {
+    font-weight: bold;
+  }
+
+
+
+
+
+  /* conteneur à droite, au-dessus du tableau */
+.top-actions{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    margin:15px 0 25px;
+    gap:15px;
+  }
+  
+  /* bouton violet */
+  .top-actions .btn-new{
+    background-color: rgb(116, 64, 198);
+    color:#fff !important;                 /* écrase d’éventuels styles de <a> */
+    text-decoration:none !important;       /* enlève le soulignement */
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:6px;
+    box-shadow:0 3px 8px rgba(116,64,198,.25);
+    transition:all .2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  
+  .top-actions .btn-new i{ font-size:14px; }
+  
+  .top-actions .btn-new:hover{
+    background-color: rgb(90,45,165);
+    transform: translateY(-2px);
+  }
+  
+  /* variante verte (si besoin) */
+  .top-actions .btn-new.green{
+    background-color:#28a745;
+    box-shadow:0 3px 8px rgba(40,167,69,.25);
+  }
+  .top-actions .btn-new.green:hover{ background-color:#218838; }
+
+
+  .badge-blue{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#e6f0ff;
+    color:#1f3a8a;
+    font-weight:600;
+    font-size:12px;
+  }

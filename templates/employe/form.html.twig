@@ -1,0 +1,184 @@
+{# templates/employe/form.html.twig #}
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('css/listemodule.css') ~ '?v=7' }}" data-turbo-track="reload">
+  <link rel="stylesheet" href="{{ asset('css/form.css') ~ '?v=7' }}" data-turbo-track="reload">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block body %}
+<div class="page-add-emp">
+  <div class="container">
+    <div class="card">
+
+      <h2 class="section-title" style="margin-bottom:18px;">Nouvel Employé</h2>
+
+      {{ form_start(formEmp, { attr: {'data-turbo':'false', class:'form'} }) }}
+
+        {# numéro (affichage) #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.codeAffiche, 'numéro') }}</div>
+          <div>
+            {{ form_widget(formEmp.codeAffiche, {attr:{class:'input', readonly:true}}) }}
+            {% set err = form_errors(formEmp.codeAffiche) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# nom complet #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.nomComplet, 'Nom complet') }}</div>
+          <div>
+            {{ form_widget(formEmp.nomComplet, {
+              attr:{
+                class:'input' ~ (form_errors(formEmp.nomComplet) ? ' is-invalid' : ''),
+                placeholder:'Ex: Jean Dupont'
+              }
+            }) }}
+            {% set err = form_errors(formEmp.nomComplet) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# téléphone #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.telephone, 'Téléphone') }}</div>
+          <div>
+            {{ form_widget(formEmp.telephone, {
+              attr:{
+                class:'input' ~ (form_errors(formEmp.telephone) ? ' is-invalid' : ''),
+                placeholder:'770000000'
+              }
+            }) }}
+            {% set err = form_errors(formEmp.telephone) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# date d’embauche #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.embaucheAt, 'Embauche at') }}</div>
+          <div>
+            {{ form_widget(formEmp.embaucheAt, {
+              attr:{ class:'input' ~ (form_errors(formEmp.embaucheAt) ? ' is-invalid' : '') }
+            }) }}
+            {% set err = form_errors(formEmp.embaucheAt) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# département #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.departement, 'Département') }}</div>
+          <div>
+            {{ form_widget(formEmp.departement, {
+              attr:{ class:'select' ~ (form_errors(formEmp.departement) ? ' is-invalid' : '') }
+            }) }}
+            {% set err = form_errors(formEmp.departement) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+       {# archivage (radios) #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.isArchived, 'Archiver') }}</div>
+          <div class="radios">
+            {% for choice in formEmp.isArchived %}
+              <label class="radio">
+                {{ form_widget(choice, { attr: { class: 'radio-input' } }) }}
+                {{ form_label(choice, null, { label_attr: { class: 'radio-text' } }) }}
+              </label>
+            {% endfor %}
+            {% set err = form_errors(formEmp.isArchived) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+
+        {# --- PAYS --- #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.pays, 'Pays') }}</div>
+          <div>
+            {{ form_widget(formEmp.pays, {
+              attr:{ class:'input', placeholder:'Ex : Sénégal' }
+            }) }}
+            {% set err = form_errors(formEmp.pays) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# --- VILLE --- #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.ville, 'Ville') }}</div>
+          <div>
+            {{ form_widget(formEmp.ville, {
+              attr:{ class:'input', placeholder:'Ex : Dakar' }
+            }) }}
+            {% set err = form_errors(formEmp.ville) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# --- RUE --- #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.rue, 'Rue') }}</div>
+          <div>
+            {{ form_widget(formEmp.rue, {
+              attr:{ class:'input', placeholder:'Ex : Nord Foire …' }
+            }) }}
+            {% set err = form_errors(formEmp.rue) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        {# adresse #}
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.adresse, 'Adresse') }}</div>
+          <div>
+            {{ form_widget(formEmp.adresse, {
+              attr:{
+                class:'textarea' ~ (form_errors(formEmp.adresse) ? ' is-invalid' : ''),
+                rows:3,
+                placeholder:'Adresse complète…'
+              }
+            }) }}
+            {% set err = form_errors(formEmp.adresse) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">{{ form_label(formEmp.photoFile, 'Photo profil') }}</div>
+          <div>
+            {{ form_widget(formEmp.photoFile, {
+              attr: {
+                class: 'input',
+                accept: 'image/*'
+              }
+            }) }}
+            {% set err = form_errors(formEmp.photoFile) %}
+            {% if err is not empty %}<div class="field-error">{{ err|raw }}</div>{% endif %}
+          </div>
+        </div>
+
+
+
+        {# bouton #}
+        <div class="row actions">
+          <div class="right-align">
+            <button class="btn" type="submit">
+              <i class="fa-solid fa-save" style="margin-right:6px;"></i> Enregistrer
+            </button>
+          </div>
+        </div>
+
+        {{ form_row(formEmp._token) }}
+      {{ form_end(formEmp, {render_rest:false}) }}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

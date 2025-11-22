@@ -1,0 +1,118 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('css/listemodule.css') ~ '?v=8' }}" data-turbo-track="reload">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="droite">
+
+      {# ========== FORMULAIRE D'AJOUT - ADMIN UNIQUEMENT ========== #}
+      {% if is_granted('ROLE_ADMIN') %}
+        <div class="error-message">
+          {{ form_errors(formDept.nom) }}
+        </div>
+
+        <div class="for">
+          {{ form_start(formDept, {
+            action: path('app_departement_list'),
+            method: 'POST',
+            attr: { class: 'filter-form', 'data-turbo':'false' }
+          }) }}
+
+          <div style="display:flex; gap:10px; align-items:center; flex:1;">
+            {{ form_widget(formDept.nom) }}
+            <datalist id="deps">
+              {% for d in departements %}
+                <option value="{{ d.nom }}" data-id="{{ d.id }}"></option>
+              {% endfor %}
+            </datalist>
+            <input type="submit" class="btn-rech" value="Enregistrer">
+          </div>
+
+          {{ form_row(formDept._token) }}
+          {{ form_end(formDept, { render_rest: false }) }}
+        </div>
+      {% endif %}
+
+      <h2 class="section-title">Liste des departements</h2>
+      
+      {# ========== BOUTON NOUVEAU - ADMIN UNIQUEMENT ========== #}
+      {% if is_granted('ROLE_ADMIN') %}
+        <div class="top-actions">
+          <a href="#" class="btn-new">
+            <i class="fa-solid fa-plus"></i> Nouveau Département
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="body">
+        {% if departements is not empty %}
+          <div class="my_table">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nom</th>
+                  <th>Nbre Employés</th>
+                  <th>Date de création</th>
+                  <th>Statut</th>
+                  
+                  {# ========== COLONNE ACTION - ADMIN UNIQUEMENT ========== #}
+                  {% if is_granted('ROLE_ADMIN') %}
+                    <th>Action</th>
+                  {% endif %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for departement in departements %}
+                  <tr>
+                    <td>{{ departement.id }}</td>
+                    <td>{{ departement.nom }}</td>
+
+                    <td>
+                      <span class="badge-blue">
+                        {{ counts[departement.id]|default(0) }}
+                      </span>
+                    </td>
+                    <td>
+                      {% if departement.createAt %}
+                        {{ departement.createAt|date('d/m/Y') }}
+                      {% endif %}
+                    </td>
+                    <td>
+                      <span class="statut-badge {{ departement.isArchived ? 'archive' : 'actif' }}">
+                        {{ departement.isArchived ? 'Archivé' : 'Actif' }}
+                      </span>
+                    </td>
+                    
+                    {# ========== BOUTONS D'ACTION - ADMIN UNIQUEMENT ========== #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                      <td>
+                        <a href="{{ path('employe_par_departement', {'id': departement.id}) }}" class="a1">Employés</a>
+                        <a href="#" class="a2">Edit</a>
+                        <a href="#" class="a3">Archive</a>
+                      </td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+        
+        {# ========== PAGINATION - ADMIN UNIQUEMENT ========== #}
+        {% if is_granted('ROLE_ADMIN') %}
+          {% include "components/pagination.html.twig" with { nbrepage: nbrepage, pageEnCours: pageEnCours, pathName: 'app_departement_list' } %}
+        {% endif %}
+      </div>
+
+      
+    </div>
+  </div>
+{% endblock %}

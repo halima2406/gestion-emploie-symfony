@@ -1,0 +1,140 @@
+{# templates/employe/list.html.twig #}
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('css/listemodule.css') ~ '?v=5' }}" data-turbo-track="reload">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="droite">
+
+    {# ========== FILTRE - ADMIN UNIQUEMENT ========== #}
+    {% if is_granted('ROLE_ADMIN') and formSearchEmp is defined %}
+  
+      <div class="for">
+        {{ form_start(formSearchEmp, { attr: { class: 'filter-form', 'data-turbo':'false' } }) }}
+
+          <div class="filter">
+            {{ form_widget(formSearchEmp.numero, {
+              attr: { class:'filter-input', placeholder:'Rechercher un numero…', autocomplete:'off' }
+            }) }}
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center; flex:1;">
+            {{ form_widget(formSearchEmp.departement, {
+              attr: { class:'filter-input' }
+            }) }}
+          </div>
+
+          {{ form_widget(formSearchEmp.statut, {
+            attr: { class:'filter-input' }
+          }) }}
+
+          <button type="submit" class="btn-rech">Rechercher</button>
+        {{ form_end(formSearchEmp) }}
+      </div>
+    {% endif %}
+
+    <h2 class="section-title">
+      {% if is_granted('ROLE_ADMIN') %}
+        Liste des Employés
+      {% else %}
+        Employés de mon département
+      {% endif %}
+    </h2>
+
+    {# ========== BOUTON AJOUTER - ADMIN UNIQUEMENT ========== #}
+    {% if is_granted('ROLE_ADMIN') %}
+      <div class="top-actions">
+        <a href="{{ path('app_employe_add') }}" class="btn-new">
+          <i class="fa-solid fa-plus"></i> Nouveau Employé
+        </a>
+      </div>
+    {% endif %}
+
+    <div class="body">
+      <div class="my_table">
+        <table>
+          <thead>
+            <tr>
+              <td>Photo</td>
+              <td>Numéro</td>
+              <td>Nom</td>
+              <td>Téléphone</td>
+              <td>Date de création</td>
+              <td>Département</td>
+              <td>Statut</td>
+              
+              {# ========== COLONNE ACTION - ADMIN UNIQUEMENT ========== #}
+              {% if is_granted('ROLE_ADMIN') %}
+                <td>Action</td>
+              {% endif %}
+            </tr>
+          </thead>
+          <tbody>
+          {% for employe in employes|default([]) %}
+            <tr>
+              <td>
+                <img
+                  src="{{ asset(employe.photo ? 'uploads/' ~ employe.photo : 'uploads/employes/default.png') }}"
+                  alt="Photo de {{ employe.nomComplet }}"
+                  style="width:50px;height:50px;object-fit:cover;border-radius:50%;">
+              </td>
+              <td>{{ employe.numero }}</td>
+              <td>{{ employe.nomComplet }}</td>
+              <td>{{ employe.telephone }}</td>
+              <td>{{ employe.createAt ? employe.createAt|date('d/m/Y') : '' }}</td>
+
+              <td>
+                {{ employe.departement ? employe.departement.nom : '—' }}
+              </td>
+              <td>
+                <span class="statut-badge {{ employe.isDeleted ? 'archive' : 'actif' }}">
+                  {{ employe.isDeleted ? 'Archivé' : 'Actif' }}
+                </span>
+              </td>
+              
+              {# ========== BOUTONS D'ACTION - ADMIN UNIQUEMENT ========== #}
+              {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                  <a href="#" class="a2">Modifier</a>
+                  <a href="#" class="a3">Supprimer</a>
+                </td>
+              {% endif %}
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="{% if is_granted('ROLE_ADMIN') %}8{% else %}7{% endif %}" style="text-align:center;">
+                {% if is_granted('ROLE_ADMIN') %}
+                  Aucun employé trouvé
+                {% else %}
+                  Aucun employé dans votre département
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {# ========== PAGINATION - ADMIN UNIQUEMENT ========== #}
+      {% if is_granted('ROLE_ADMIN') %}
+        <div id="liste"></div>
+        {% include "components/pagination.html.twig" with {
+          nbrepage: nbrepage,
+          pageEnCours: pageEnCours,
+          pathName: app.request.attributes.get('_route'),
+          query: app.request.query.all
+        } %}
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

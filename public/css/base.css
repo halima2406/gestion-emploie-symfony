@@ -1,0 +1,118 @@
+:root { --main-color: rgb(116, 64, 198); }
+
+html, body{
+  background-color:#fff !important;
+  margin:0; padding:0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header commun */
+.haut{
+  display:flex; align-items:center; gap:30px;
+  padding:15px 30px;
+  background:#fff;
+  border-bottom:2px solid var(--main-color);
+}
+
+.haut h1{
+  color:var(--main-color);
+  margin:0;
+  font-size:28px;        /* titre bien grand */
+  font-weight:700;
+  line-height:1.1;
+}
+
+/* NAV à droite du h1 */
+.nav{
+  display:flex; align-items:center; gap:24px;
+}
+
+/* 👉 Taille explicite pour éviter l’héritage du H1 */
+.nav-link{
+  font-size:16px;        /* ou 1rem si tu préfères */
+  font-weight:600;
+  color:#333;
+  text-decoration:none;
+  line-height:1.2;
+}
+
+.nav-link:hover{ text-decoration:underline; }
+
+/* État actif cohérent */
+.nav-link.active{
+  color:var(--main-color);
+  text-decoration:underline;
+  text-underline-offset:6px;
+  text-decoration-thickness:2px;
+}
+/* Entêtes de section unifiées */
+.section-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin:8px 0 18px;
+}
+.section-title{ margin:0; font-size:1.5rem; font-weight:800; color:#111827; }
+.section-actions{ display:flex; gap:10px; }
+.btn-secondary{
+  padding:8px 12px; border-radius:8px;
+  border:1px solid #e5e7eb; background:#fff; color:#374151; text-decoration:none;
+}
+.btn-secondary:hover{ background:#f9fafb; }
+
+
+
+/* === Bandeau de page commun (gris clair + bordure violette + padding) === */
+.page-banner{
+  background:#eef3f7;                  /* gris clair du bandeau */
+  border-radius:16px;                  /* coins arrondis */
+  padding:40px 56px;                   /* respiration interne */
+  margin:16px 24px 28px;               /* espace autour */
+  border-bottom:4px solid var(--main-color); /* la bande violette en bas */
+  box-shadow:0 8px 22px rgba(17,24,39,.06);  /* petite ombre comme tes autres pages */
+}
+
+/* Disposition interne du bandeau */
+.banner-grid{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  flex-wrap:wrap;
+}
+
+/* Gros titre à gauche (violet) */
+.title-xl{
+  margin:0;
+  font-size:56px;
+  line-height:1.05;
+  font-weight:800;
+  color:var(--main-color);
+}
+
+/* Nav de raccourcis à droite, gros et gras */
+.quick-nav{
+  display:flex;
+  align-items:flex-end;
+  gap:48px;
+  font-size:28px;
+  font-weight:800;
+}
+
+.quick-nav a{
+  color:#111827;
+  text-decoration:none;
+}
+
+.quick-nav a.active{
+  color:var(--main-color);
+  text-decoration:underline;
+  text-underline-offset:10px;
+}
+
+body {
+  background-color: #eef3f7; /* gris clair uniforme sur toutes les pages */
+}
+
+.page {
+  padding: 40px 0;          /* espace au-dessus et en dessous du contenu */
+  min-height: 100vh;        /* pour que le fond remplisse tout l’écran */
+}

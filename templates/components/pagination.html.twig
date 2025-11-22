@@ -1,0 +1,27 @@
+{% set routeName   = app.request.attributes.get('_route') %}
+{% set routeParams = app.request.attributes.get('_route_params')|default({}) %}
+{% set query       = app.request.query.all %}
+
+<div class="pagination">
+
+  {% if pageEnCours > 1 %}
+    <a href="{{ path(routeName, routeParams|merge(query)|merge({'page': pageEnCours - 1})) }}"
+       class="prev">&laquo;</a>
+  {% else %}
+    <span class="prev disabled">&laquo;</span>
+  {% endif %}
+
+  {% for index in 1..nbrepage %}
+    {% set classes = (pageEnCours == index) ? 'active' : '' %}
+    <a href="{{ path(routeName, routeParams|merge(query)|merge({'page': index})) }}"
+       class="{{ classes }}">{{ index }}</a>
+  {% endfor %}
+
+  {% if pageEnCours < nbrepage %}
+    <a href="{{ path(routeName, routeParams|merge(query)|merge({'page': pageEnCours + 1})) }}"
+       class="next">&raquo;</a>
+  {% else %}
+    <span class="next disabled">&raquo;</span>
+  {% endif %}
+
+</div>

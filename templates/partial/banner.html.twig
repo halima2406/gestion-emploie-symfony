@@ -1,0 +1,21 @@
+{# Bandeau de page réutilisable #}
+{% set current = app.request.attributes.get('_route') %}
+
+<div class="page-banner">
+  <div class="banner-grid">
+    <h1 class="title-xl">Gestion des Employes</h1>
+
+    <nav class="quick-nav">
+      <a href="#"
+         class="{{ current starts with 'dashboard' ? 'active' : '' }}">Tableau de bord</a>
+
+      <a href="{{ path('app_departement_list') }}"
+         data-turbo="false"
+         class="{{ current starts with 'app_departement' ? 'active' : '' }}">departement</a>
+
+      <a href="{{ path('app_employe_list') }}"
+         data-turbo="false"
+         class="{{ current starts with 'app_employe' ? 'active' : '' }}">Employes</a>
+    </nav>
+  </div>
+</div>
